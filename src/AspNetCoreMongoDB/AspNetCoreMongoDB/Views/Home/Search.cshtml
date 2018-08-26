@@ -1,0 +1,24 @@
+﻿@using AspNetCoreMongoDB.Models
+@model IEnumerable<AspNetCoreMongoDB.Models.Customer>
+@{
+    ViewData["Title"] = "Search Page";
+}
+
+<div class="row" style="margin-top: 20px">
+    <form method="GET" action="/Home/Search">
+        <p><label>Pesquisa: <input type="text" name="q" /></label></p>
+        <p><input type="submit" value="Pesquisar" class="btn btn-primary" /></p>
+        <p>@Html.Raw(ViewData["Count"]) clientes cadastrados!</p>
+    </form>
+</div>
+
+<hr />
+@if (Model != null)
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@Html.DisplayFor(modelItem => item.Nome)</li>
+        }
+    </ul>
+}
